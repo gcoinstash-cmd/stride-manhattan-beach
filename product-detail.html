@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Runner 'Pacific Dune' — STRIDE MB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brandDark: '#0A0A0B', brandCard: '#131316', brandOrange: '#FF5A36', brandTeal: '#2EC4B6' },
+          fontFamily: { heading: ['Space Grotesk', 'sans-serif'], body: ['Plus Jakarta Sans', 'sans-serif'], mono: ['Space Mono', 'monospace'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0A0A0B] text-white font-body pb-24 text-base text-zinc-100 font-sans antialiased selection:bg-emerald-500">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FF5A36] to-[#2EC4B6] p-[2px] flex items-center justify-center">
+          <div class="w-full h-full bg-[#0A0A0B] rounded-[10px] flex items-center justify-center font-heading font-black text-lg text-white">S</div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-xl tracking-tight">STRIDE<span class="text-[#FF5A36]">.</span>MB</span>
+          <span class="text-[9px] font-mono tracking-widest text-zinc-400 uppercase">Product Detail</span>
+        </div>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="shop" class="text-xs font-mono text-zinc-400 hover:text-white">&larr; Back to Archive</a>
+        <button data-cart-trigger class="relative p-2.5 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span data-cart-count class="absolute -top-1 -right-1 bg-[#FF5A36] text-white text-xs font-semibold tracking-wider font-mono font-bold w-5 h-5 rounded-full flex items-center justify-center">2</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Luxury PDP Main -->
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+      <!-- Gallery Column (Sticky Nike / GOAT Showcase) -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="bg-[#131316] rounded-3xl border border-white/10 p-4 flex items-center justify-center min-h-[500px] relative overflow-hidden group">
+          <span class="absolute top-6 left-6 z-10 badge-mb">MB FLAGSHIP EXCLUSIVE</span>
+          <span class="absolute top-6 right-6 z-10 font-mono text-xs text-zinc-400 bg-black/60 px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-[#2EC4B6]"></span> NFC VERIFIED
+          </span>
+          
+          <img id="mainProductImg" 
+               src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=80" 
+               alt="Aura Runner Pacific Dune main" 
+               class="w-full h-full object-cover rounded-2xl transition-all duration-500 group-hover:scale-105">
+        </div>
+
+        <!-- Nike SNKRS / GOAT 5-Angle Selector Pills -->
+        <div class="flex flex-wrap items-center justify-between gap-2 p-3 bg-zinc-900/50 rounded-2xl border border-white/10">
+          <span class="text-xs font-semibold font-mono text-zinc-500 uppercase ml-2">Perspective:</span>
+          <div class="flex flex-wrap gap-2">
+            <button class="angle-pill active" data-angle-img="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=80">01 / Lateral</button>
+            <button class="angle-pill" data-angle-img="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1200&q=80">02 / Medial</button>
+            <button class="angle-pill" data-angle-img="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=1200&q=80">03 / Heel</button>
+            <button class="angle-pill" data-angle-img="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=1200&q=80">04 / Outsole</button>
+            <button class="angle-pill" data-angle-img="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=1200&q=80">05 / On-Foot</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Purchase / Specs Column -->
+      <div class="lg:col-span-5 space-y-8">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="badge-drop"><span class="pulse-dot"></span> ONLY 4 PAIRS LEFT IN SOUTHERN CALIFORNIA</span>
+          </div>
+          <h1 id="productColorwayTitle" class="text-3xl sm:text-4xl font-heading font-extrabold text-white">Aura Runner 'Pacific Dune'</h1>
+          <p id="productSkuDisplay" class="text-xs font-mono text-zinc-400 mt-1">STYLE CODE: MB-990-PD • CHALK / PACIFIC SLATE / SUNSET</p>
+          <div class="mt-4 flex items-baseline gap-3">
+            <span class="font-heading font-extrabold text-3xl text-white">$240.00</span>
+            <span class="text-xs font-mono text-[#2EC4B6]">Includes Free MB Custom Dustbag</span>
+          </div>
+        </div>
+
+        <!-- Nike Style Colorway Swatches -->
+        <div class="space-y-3 pt-4 border-t border-white/10">
+          <div class="flex justify-between items-center text-xs font-mono">
+            <span class="text-zinc-400 uppercase">Available Colorways (3):</span>
+          </div>
+          <div class="flex gap-3">
+            <div data-colorway 
+                 data-name="Aura Runner 'Pacific Dune'" 
+                 data-sku="STYLE CODE: MB-990-PD • CHALK / PACIFIC SLATE / SUNSET" 
+                 data-img="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=80"
+                 class="colorway-thumb active">
+              <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover">
+            </div>
+            <div data-colorway 
+                 data-name="Coastal Low 'El Porto'" 
+                 data-sku="STYLE CODE: MB-100-EP • SAGE GREEN / DUNE CHALK" 
+                 data-img="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1200&q=80"
+                 class="colorway-thumb">
+              <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover">
+            </div>
+            <div data-colorway 
+                 data-name="Midnight Strider 'Noir Collab'" 
+                 data-sku="STYLE CODE: MB-001-MS • OBSIDIAN BLACK / AMBER" 
+                 data-img="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=1200&q=80"
+                 class="colorway-thumb">
+              <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+
+        <!-- Shoe Size Selector -->
+        <div class="space-y-3 pt-4 border-t border-white/10">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-mono uppercase text-zinc-300">Select Size: <strong id="selectedSizeDisplay" class="text-white">US 10.5</strong></span>
+            <button class="text-xs font-mono text-[#FF5A36] underline hover:text-white" onclick="alert('US Mens Sneaker Sizing Guide: True to size. For wide feet, consider half size up.');">Size Chart</button>
+          </div>
+          <div class="grid grid-cols-4 gap-2.5">
+            <button class="size-pill" data-size="US 8.5">8.5</button>
+            <button class="size-pill" data-size="US 9.0">9.0</button>
+            <button class="size-pill" data-size="US 9.5">9.5</button>
+            <button class="size-pill" data-size="US 10.0">10.0</button>
+            <button class="size-pill active" data-size="US 10.5">10.5</button>
+            <button class="size-pill" data-size="US 11.0">11.0</button>
+            <button class="size-pill" data-size="US 11.5">11.5</button>
+            <button class="size-pill sold-out" data-size="US 12.0">12.0</button>
+          </div>
+        </div>
+
+        <!-- Add to Bag / Buy Actions -->
+        <div class="space-y-3">
+          <button id="mainBuyBtn" 
+                  onclick="CartState.addItem({ id: 'mb-990-pd', name: document.getElementById('productColorwayTitle').textContent, price: 240, size: document.getElementById('selectedSizeDisplay').textContent, image: document.getElementById('mainProductImg').src })"
+                  class="w-full btn-heat !py-4 text-base">
+            Add to Bag — $240.00
+          </button>
+          <a href="contact" class="w-full btn-secondary !py-3 text-xs block text-center">
+            Reserve for In-Store MB Flagship Fitting &rarr;
+          </a>
+        </div>
+
+        <!-- Accordions -->
+        <div class="border-t border-white/10 divide-y divide-white/10 pt-2">
+          <div>
+            <button class="w-full py-4 flex justify-between items-center text-left text-sm font-heading font-bold text-white hover:text-[#FF5A36] transition-colors" data-accordion-header>
+              <span>100% In-House Authenticity Guarantee</span>
+              <span class="accordion-icon transition-transform font-mono text-zinc-400">↓</span>
+            </button>
+            <div class="overflow-hidden transition-all duration-300 max-h-0 text-xs text-zinc-400 font-normal leading-relaxed pb-4" data-accordion-content>
+              Every pair in our Manhattan Beach boutique undergoes an extensive 12-point physical verification protocol by our senior curation team before being tagged with our tamper-evident NFC MB Vault seal.
+            </div>
+          </div>
+          <div>
+            <button class="w-full py-4 flex justify-between items-center text-left text-sm font-heading font-bold text-white hover:text-[#FF5A36] transition-colors" data-accordion-header>
+              <span>Materials & Coastal Craftsmanship</span>
+              <span class="accordion-icon transition-transform font-mono text-zinc-400">↓</span>
+            </button>
+            <div class="overflow-hidden transition-all duration-300 max-h-0 text-xs text-zinc-400 font-normal leading-relaxed pb-4" data-accordion-content>
+              Constructed with buttery tumbled Italian nubuck, breathable ocean-recycled mesh underlays, and custom EVA comfort cushioning tuned for concrete and boardwalk strolls.
+            </div>
+          </div>
+          <div>
+            <button class="w-full py-4 flex justify-between items-center text-left text-sm font-heading font-bold text-white hover:text-[#FF5A36] transition-colors" data-accordion-header>
+              <span>Same-Day SoCal Courier & Global Shipping</span>
+              <span class="accordion-icon transition-transform font-mono text-zinc-400">↓</span>
+            </button>
+            <div class="overflow-hidden transition-all duration-300 max-h-0 text-xs text-zinc-400 font-normal leading-relaxed pb-4" data-accordion-content>
+              Orders placed before 2:00 PM PST qualify for same-day private white-glove courier delivery across Los Angeles and Orange County. International orders ship double-boxed via DHL Express.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Nike / Kith Style "Complete The Look" Cross-Sell -->
+    <section class="mt-24 pt-12 border-t border-white/10">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="badge-mb">CURATED PAIRINGS</span>
+          <h2 class="text-2xl font-heading font-bold mt-1">Complete The Manhattan Beach Look</h2>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-zinc-900/40 p-4 rounded-2xl border border-white/10 flex gap-4 items-center">
+          <img src="https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=200&q=80" alt="Socks" class="w-20 h-20 rounded-xl object-cover">
+          <div>
+            <h4 class="font-heading font-bold text-sm text-white">MB Heavyweight Ribbed Socks</h4>
+            <span class="font-mono text-xs text-zinc-400">$24.00</span>
+            <button onclick="CartState.addItem({ id: 'mb-socks', name: 'MB Heavyweight Ribbed Socks', price: 24, size: 'One Size', image: 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=200&q=80' })" class="block text-xs font-mono text-[#FF5A36] font-bold mt-1 hover:underline">+ Add to Bag</button>
+          </div>
+        </div>
+
+        <div class="bg-zinc-900/40 p-4 rounded-2xl border border-white/10 flex gap-4 items-center">
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=200&q=80" alt="Hoodie" class="w-20 h-20 rounded-xl object-cover">
+          <div>
+            <h4 class="font-heading font-bold text-sm text-white">The Strand 500GSM Fleece</h4>
+            <span class="font-mono text-xs text-zinc-400">$165.00</span>
+            <button onclick="CartState.addItem({ id: 'mb-hoodie', name: 'The Strand 500GSM Fleece', price: 165, size: 'Large', image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=200&q=80' })" class="block text-xs font-mono text-[#FF5A36] font-bold mt-1 hover:underline">+ Add to Bag</button>
+          </div>
+        </div>
+
+        <div class="bg-zinc-900/40 p-4 rounded-2xl border border-white/10 flex gap-4 items-center">
+          <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=200&q=80" alt="Cap" class="w-20 h-20 rounded-xl object-cover">
+          <div>
+            <h4 class="font-heading font-bold text-sm text-white">Pacific Dusk Washed Cap</h4>
+            <span class="font-mono text-xs text-zinc-400">$48.00</span>
+            <button onclick="CartState.addItem({ id: 'mb-cap', name: 'Pacific Dusk Washed Cap', price: 48, size: 'Adjustable', image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=200&q=80' })" class="block text-xs font-mono text-[#FF5A36] font-bold mt-1 hover:underline">+ Add to Bag</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Nike / GOAT Floating Sticky Bottom Buy Bar -->
+  <aside id="stickyBuyBar" class="py-3 px-6">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=120&q=80" alt="Thumb" class="w-12 h-12 rounded-lg object-cover hidden sm:block">
+        <div>
+          <h4 class="font-heading font-bold text-sm text-white leading-tight">Aura Runner 'Pacific Dune'</h4>
+          <span class="font-mono text-xs text-zinc-400">$240.00 USD</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <select id="stickySizeSelect" class="bg-zinc-900 border border-white/20 rounded-xl px-3 py-2.5 text-xs font-mono text-white focus:outline-none">
+          <option value="US 8.5">Size: US 8.5</option>
+          <option value="US 9.0">Size: US 9.0</option>
+          <option value="US 9.5">Size: US 9.5</option>
+          <option value="US 10.0">Size: US 10.0</option>
+          <option value="US 10.5" selected>Size: US 10.5</option>
+          <option value="US 11.0">Size: US 11.0</option>
+          <option value="US 11.5">Size: US 11.5</option>
+        </select>
+        <button onclick="CartState.addItem({ id: 'mb-990-pd', name: 'Aura Runner Pacific Dune', price: 240, size: document.getElementById('stickySizeSelect').value, image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=200&q=80' })" 
+                class="btn-heat !py-2.5 !px-6 !text-xs">
+          Add to Bag
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Slide-out Cart Drawer -->
+  <div id="cartOverlay"></div>
+  <aside id="cartDrawer">
+    <div class="p-6 border-b border-white/10 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <h3 class="font-heading font-bold text-lg text-white">Your Bag</h3>
+        <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-300"><span data-cart-count>2</span> Items</span>
+      </div>
+      <button data-cart-close class="p-2 text-zinc-400 hover:text-white transition-colors" aria-label="Close cart">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="p-4 bg-zinc-950/60 border-b border-white/5 text-xs">
+      <div class="flex justify-between font-mono text-zinc-400 mb-1.5" id="shippingStatusText">
+        <span>Free SoCal Courier Shipping</span>
+        <span class="text-[#2EC4B6] font-bold">Unlocked!</span>
+      </div>
+      <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+        <div id="shippingProgressBar" class="bg-[#2EC4B6] h-full w-full transition-all duration-300"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scroll -->
+    <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+
+    <!-- Cart Footer & Checkout -->
+    <div class="p-6 border-t border-white/10 bg-zinc-950/80 space-y-4">
+      <div class="space-y-1.5 text-sm font-mono">
+        <div class="flex justify-between text-zinc-400">
+          <span>Subtotal</span>
+          <span class="text-white" data-cart-subtotal>$450.00</span>
+        </div>
+        <div class="flex justify-between text-zinc-400">
+          <span>Courier Shipping</span>
+          <span class="text-[#2EC4B6]">FREE</span>
+        </div>
+        <div class="flex justify-between text-white font-bold text-base pt-2 border-t border-white/10">
+          <span>Total</span>
+          <span class="text-[#FF5A36]" data-cart-total>$450.00 USD</span>
+        </div>
+      </div>
+      <button class="w-full btn-heat" onclick="alert('Proceeding to Checkout with total: ' + document.querySelector('[data-cart-total]').textContent)">
+        Proceed to Secure Checkout &rarr;
+      </button>
+    </div>
+  </aside>
+
+  <footer class="border-t border-white/10 bg-[#070708] py-8 text-center text-xs text-zinc-500 font-mono">
+    © 2026 STRIDE MB — Manhattan Beach, CA.
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

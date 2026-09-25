@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lookbook 2026 — STRIDE MB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brandDark: '#0A0A0B', brandCard: '#131316', brandOrange: '#FF5A36', brandTeal: '#2EC4B6' },
+          fontFamily: { heading: ['Space Grotesk', 'sans-serif'], body: ['Plus Jakarta Sans', 'sans-serif'], mono: ['Space Mono', 'monospace'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0A0A0B] text-white font-body text-base text-zinc-100 font-sans antialiased selection:bg-emerald-500">
+
+  <header class="sticky top-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FF5A36] to-[#2EC4B6] p-[2px] flex items-center justify-center">
+          <div class="w-full h-full bg-[#0A0A0B] rounded-[10px] flex items-center justify-center font-heading font-black text-lg text-white">S</div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-xl tracking-tight">STRIDE<span class="text-[#FF5A36]">.</span>MB</span>
+          <span class="text-[9px] font-mono tracking-widest text-zinc-400 uppercase">Lookbook Editorial</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+        <a href="shop" class="hover:text-white transition-colors">Shop All</a>
+        <a href="drops" class="hover:text-[#FF5A36] transition-colors">Drops</a>
+        <a href="lookbook" class="text-white font-bold">Lookbook</a>
+        <a href="about" class="hover:text-white transition-colors">The Beach House</a>
+        <a href="contact" class="hover:text-white transition-colors">Concierge</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <button data-cart-trigger class="p-2.5 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-16 space-y-16">
+    <div class="max-w-2xl space-y-4">
+      <span class="badge-mb">VOL. 04 / PACIFIC DRIFT</span>
+      <h1 class="text-4xl sm:text-6xl font-heading font-black">Coastal Streetwear Editorial</h1>
+      <p class="text-zinc-400">Shot on 35mm film across Manhattan Beach Pier, El Porto breaks, and Highland Avenue.</p>
+    </div>
+
+    <!-- Lookbook Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div class="md:col-span-8 bg-zinc-900/60 rounded-3xl border border-white/10 min-h-[460px] flex flex-col justify-end relative overflow-hidden group">
+        <img src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=1200&q=80" 
+             alt="Dawn Patrol on 14th Street" 
+             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+        <div class="relative z-10 p-8 space-y-2">
+          <span class="text-xs font-mono text-[#FF5A36]">SERIES A • 01</span>
+          <h3 class="text-2xl font-heading font-bold">Dawn Patrol on 14th Street</h3>
+          <p class="text-base text-zinc-200 leading-relaxed font-mono">Featuring the Coastal Low 'El Porto' with Heavyweight MB Fleece</p>
+        </div>
+      </div>
+
+      <div class="md:col-span-4 bg-zinc-900/60 rounded-3xl border border-white/10 min-h-[460px] flex flex-col justify-end relative overflow-hidden group">
+        <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80" 
+             alt="Salt Air Soles" 
+             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+        <div class="relative z-10 p-8 space-y-2">
+          <span class="text-xs font-mono text-[#2EC4B6]">SERIES A • 02</span>
+          <h3 class="text-2xl font-heading font-bold">Salt Air Soles</h3>
+          <p class="text-base text-zinc-200 leading-relaxed font-mono">The Strand Pavilion After Hours</p>
+        </div>
+      </div>
+
+      <div class="md:col-span-6 bg-zinc-900/60 rounded-3xl border border-white/10 min-h-[400px] flex flex-col justify-end relative overflow-hidden group">
+        <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=1000&q=80" 
+             alt="Japanese Indigo Archive" 
+             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+        <div class="relative z-10 p-8 space-y-2">
+          <span class="text-xs font-mono text-[#FF5A36]">SERIES B • 03</span>
+          <h3 class="text-2xl font-heading font-bold">Japanese Indigo Archive</h3>
+          <p class="text-base text-zinc-200 leading-relaxed font-mono">Raw denim accents on Pacific Boulevard</p>
+        </div>
+      </div>
+
+      <div class="md:col-span-6 bg-zinc-900/60 rounded-3xl border border-white/10 min-h-[400px] flex flex-col justify-end relative overflow-hidden group">
+        <img src="https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?auto=format&fit=crop&w=1000&q=80" 
+             alt="Midnight Strand Session" 
+             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+        <div class="relative z-10 p-8 space-y-2">
+          <span class="text-xs font-mono text-[#2EC4B6]">SERIES B • 04</span>
+          <h3 class="text-2xl font-heading font-bold">Midnight Strand Session</h3>
+          <p class="text-base text-zinc-200 leading-relaxed font-mono">High-top silhouettes under pier lights</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-white/10 bg-[#070708] py-8 text-center text-xs text-zinc-500 font-mono">
+    © 2026 STRIDE MB — Manhattan Beach, CA.
+  </footer>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: stride-manhattan-beach
+    env: static
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false

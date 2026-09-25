@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flagship Command & Admin Portal — STRIDE MB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brandDark: '#0A0A0B', brandCard: '#131316', brandOrange: '#FF5A36', brandTeal: '#2EC4B6' },
+          fontFamily: { heading: ['Space Grotesk', 'sans-serif'], body: ['Plus Jakarta Sans', 'sans-serif'], mono: ['Space Mono', 'monospace'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0A0A0B] text-white font-body min-h-screen flex flex-col text-base text-zinc-100 font-sans antialiased selection:bg-emerald-500">
+
+  <!-- Password Authentication Gate Overlay -->
+  <div id="authGateOverlay" class="fixed inset-0 bg-[#0A0A0B] z-[10000] flex items-center justify-center p-6">
+    <div class="max-w-md w-full bg-[#131316] border border-white/15 rounded-3xl p-8 space-y-6 text-center shadow-2xl">
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#FF5A36] to-[#2EC4B6] p-[2px] mx-auto">
+        <div class="w-full h-full bg-[#0A0A0B] rounded-[14px] flex items-center justify-center font-heading font-black text-xl text-white">S</div>
+      </div>
+      <div>
+        <span class="badge-mb">RESTRICTED ACCESS</span>
+        <h2 class="text-2xl font-heading font-extrabold text-white mt-2">Boutique Command Center</h2>
+        <p class="text-base text-zinc-200 leading-relaxed font-mono mt-1">Enter Flagship security key to access database</p>
+      </div>
+
+      <form id="authGateForm" class="space-y-4">
+        <input id="adminPassInput" type="password" placeholder="Passcode (Default: stridemb2026)" class="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-white/15 text-xs text-white placeholder-zinc-500 font-mono text-center focus:outline-none focus:border-[#FF5A36]">
+        <button type="submit" class="w-full btn-heat !py-3.5 text-xs font-bold">Unlock Command Center &rarr;</button>
+        <button type="button" onclick="document.getElementById('adminPassInput').value='stridemb2026'; document.getElementById('authGateForm').dispatchEvent(new Event('submit'));" class="w-full py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-[#2EC4B6] transition-colors flex items-center justify-center gap-2">
+          <span>⚡</span> 1-Click Auto-Fill Demo Passcode
+        </button>
+        <p id="authErrorMsg" class="text-xs text-red-400 font-mono hidden">Incorrect security key. Default is: stridemb2026</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FF5A36] to-[#2EC4B6] p-[2px] flex items-center justify-center">
+          <div class="w-full h-full bg-[#0A0A0B] rounded-[10px] flex items-center justify-center font-heading font-black text-lg text-white">S</div>
+        </a>
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-xl tracking-tight">STRIDE<span class="text-[#FF5A36]">.</span>MB</span>
+          <span class="text-[9px] font-mono tracking-widest text-[#2EC4B6] uppercase font-bold">Admin Operating System</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button onclick="exportDataCSV()" class="text-xs font-mono text-zinc-300 hover:text-white px-3 py-1.5 rounded-lg border border-white/15 bg-white/5 flex items-center gap-2">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Export CSV
+        </button>
+        <a href="/" class="text-xs font-mono text-zinc-400 hover:text-white">&larr; Return to Store</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Main View -->
+  <main class="max-w-7xl mx-auto px-6 py-10 flex-1 space-y-8 w-full">
+
+    <!-- KPI Metric Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-[#131316] p-6 rounded-2xl border border-white/10 space-y-2">
+        <div class="flex justify-between items-center text-xs font-mono text-zinc-400">
+          <span>VIP Fitting Appointments</span>
+          <span class="text-[#FF5A36]">Flagship</span>
+        </div>
+        <div id="statBookingsCount" class="text-3xl font-heading font-extrabold text-white">--</div>
+        <p class="text-xs font-semibold text-zinc-500 font-mono">Real-time appointments booked</p>
+      </div>
+
+      <div class="bg-[#131316] p-6 rounded-2xl border border-white/10 space-y-2">
+        <div class="flex justify-between items-center text-xs font-mono text-zinc-400">
+          <span>Sole Raffle Entrants</span>
+          <span class="text-[#2EC4B6]">Bot-Verified</span>
+        </div>
+        <div id="statRaffleCount" class="text-3xl font-heading font-extrabold text-white">--</div>
+        <p class="text-xs font-semibold text-zinc-500 font-mono">Registered for Solar Eclipse Low</p>
+      </div>
+
+      <div class="bg-[#131316] p-6 rounded-2xl border border-white/10 space-y-2">
+        <div class="flex justify-between items-center text-xs font-mono text-zinc-400">
+          <span>Authenticated Sales Volume</span>
+          <span class="text-amber-400">Live</span>
+        </div>
+        <div id="statSalesVolume" class="text-3xl font-heading font-extrabold text-white">$735.00</div>
+        <p class="text-xs font-semibold text-zinc-500 font-mono">Completed demo checkout batches</p>
+      </div>
+    </div>
+
+    <!-- Tab Selector -->
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+      <div class="flex items-center gap-2">
+        <button onclick="switchTab('vip')" id="tabBtnVip" class="px-4 py-2 rounded-xl text-xs font-mono font-bold bg-white text-black transition-all">
+          VIP Bookings (<span id="tabCountVip">0</span>)
+        </button>
+        <button onclick="switchTab('raffle')" id="tabBtnRaffle" class="px-4 py-2 rounded-xl text-xs font-mono font-bold bg-zinc-900 text-zinc-400 hover:text-white transition-all">
+          Raffle Engine (<span id="tabCountRaffle">0</span>)
+        </button>
+        <button onclick="switchTab('orders')" id="tabBtnOrders" class="px-4 py-2 rounded-xl text-xs font-mono font-bold bg-zinc-900 text-zinc-400 hover:text-white transition-all">
+          Orders Ledger
+        </button>
+        <button onclick="switchTab('settings')" id="tabBtnSettings" class="px-4 py-2 rounded-xl text-xs font-mono font-bold bg-zinc-900 text-zinc-400 hover:text-white transition-all">
+          Supabase Sync
+        </button>
+      </div>
+
+      <div id="raffleActionContainer" class="hidden">
+        <button onclick="handleDrawWinner()" class="btn-heat !py-2 !px-4 !text-xs">
+          🎲 Draw Random Sole Raffle Winner
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab 1: VIP Bookings Table -->
+    <div id="tabContentVip" class="bg-[#131316] rounded-2xl border border-white/10 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs font-mono">
+          <thead class="bg-zinc-950/80 border-b border-white/10 text-zinc-400 uppercase tracking-wider">
+            <tr>
+              <th class="p-4">Customer</th>
+              <th class="p-4">Requested Silhouettes</th>
+              <th class="p-4">Date & Time</th>
+              <th class="p-4">Status</th>
+              <th class="p-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="vipTableBody" class="divide-y divide-white/5">
+            <tr><td colspan="5" class="p-8 text-center text-zinc-500">Loading VIP records...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 2: Raffle Engine Table -->
+    <div id="tabContentRaffle" class="bg-[#131316] rounded-2xl border border-white/10 overflow-hidden hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs font-mono">
+          <thead class="bg-zinc-950/80 border-b border-white/10 text-zinc-400 uppercase tracking-wider">
+            <tr>
+              <th class="p-4">Full Name</th>
+              <th class="p-4">Email Address</th>
+              <th class="p-4">Phone</th>
+              <th class="p-4">Size</th>
+              <th class="p-4">Status</th>
+            </tr>
+          </thead>
+          <tbody id="raffleTableBody" class="divide-y divide-white/5">
+            <tr><td colspan="5" class="p-8 text-center text-zinc-500">Loading raffle entrants...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 3: Orders Ledger Table -->
+    <div id="tabContentOrders" class="bg-[#131316] rounded-2xl border border-white/10 overflow-hidden hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs font-mono">
+          <thead class="bg-zinc-950/80 border-b border-white/10 text-zinc-400 uppercase tracking-wider">
+            <tr>
+              <th class="p-4">Order #</th>
+              <th class="p-4">Customer</th>
+              <th class="p-4">Pairs</th>
+              <th class="p-4">Total</th>
+              <th class="p-4">Delivery Mode</th>
+              <th class="p-4">Status</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody" class="divide-y divide-white/5">
+            <tr><td colspan="6" class="p-8 text-center text-zinc-500">Loading orders...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 4: Supabase Sync Settings -->
+    <div id="tabContentSettings" class="bg-[#131316] rounded-2xl border border-white/10 p-8 space-y-6 max-w-2xl hidden">
+      <div>
+        <h3 class="text-xl font-heading font-bold text-white">Supabase Live Connection</h3>
+        <p class="text-base text-zinc-200 leading-relaxed font-mono mt-1">Plug in your project credentials to route all bookings, raffles, and orders to your hosted PostgreSQL database.</p>
+      </div>
+
+      <div class="space-y-4 font-mono text-xs">
+        <div>
+          <label class="block text-zinc-400 mb-1.5 uppercase">Supabase Project URL</label>
+          <input id="inputSupabaseUrl" type="url" placeholder="https://yourproject.supabase.co" class="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/15 text-white focus:outline-none focus:border-[#2EC4B6]">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1.5 uppercase">Supabase Anon Public API Key</label>
+          <input id="inputSupabaseKey" type="text" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." class="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/15 text-white focus:outline-none focus:border-[#2EC4B6]">
+        </div>
+        <button onclick="saveSupabaseSettings()" class="btn-primary !py-2.5 !px-5 text-xs font-bold">
+          Save Credentials & Verify Sync &rarr;
+        </button>
+        <p id="supabaseStatusNotice" class="text-xs text-[#2EC4B6] font-mono hidden">✓ Supabase credentials saved to browser runtime.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-white/10 bg-[#070708] py-6 text-center text-xs text-zinc-500 font-mono">
+    © 2026 STRIDE MB — Boutique Operational OS & Database
+  </footer>
+
+  <script src="assets/js/db.js"></script>
+  <script>
+    // Authentication Guard
+    const authForm = document.getElementById('authGateForm');
+    const authInput = document.getElementById('adminPassInput');
+    const authOverlay = document.getElementById('authGateOverlay');
+    const authError = document.getElementById('authErrorMsg');
+
+    if (sessionStorage.getItem('stridemb_admin_auth') === 'granted') {
+      authOverlay.classList.add('hidden');
+    }
+
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = authInput.value.trim();
+      if (val === 'stridemb2026') {
+        sessionStorage.setItem('stridemb_admin_auth', 'granted');
+        authOverlay.classList.add('hidden');
+        loadAllData();
+      } else {
+        authError.classList.remove('hidden');
+      }
+    });
+
+    // Tab Navigation
+    function switchTab(tab) {
+      const tabs = ['vip', 'raffle', 'orders', 'settings'];
+      tabs.forEach(t => {
+        document.getElementById(`tabContent${t.charAt(0).toUpperCase() + t.slice(1)}`).classList.add('hidden');
+        const btn = document.getElementById(`tabBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        btn.classList.remove('bg-white', 'text-black');
+        btn.classList.add('bg-zinc-900', 'text-zinc-400');
+      });
+
+      const activeBtn = document.getElementById(`tabBtn${tab.charAt(0).toUpperCase() + tab.slice(1)}`);
+      activeBtn.classList.add('bg-white', 'text-black');
+      activeBtn.classList.remove('bg-zinc-900', 'text-zinc-400');
+
+      document.getElementById(`tabContent${tab.charAt(0).toUpperCase() + tab.slice(1)}`).classList.remove('hidden');
+      document.getElementById('raffleActionContainer').classList.toggle('hidden', tab !== 'raffle');
+    }
+
+    async function loadAllData() {
+      // 1. VIP Bookings
+      const bookings = await StrideDB.getVIPBookings();
+      document.getElementById('statBookingsCount').textContent = bookings.length;
+      document.getElementById('tabCountVip').textContent = bookings.length;
+
+      const vipTbody = document.getElementById('vipTableBody');
+      if (bookings.length === 0) {
+        vipTbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="py-16 text-center space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-zinc-900 border border-white/10 flex items-center justify-center mx-auto text-zinc-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+              <p class="text-xs text-white font-heading font-bold">No VIP Appointments Logged</p>
+              <p class="text-xs font-semibold text-zinc-500 font-mono">Appointments submitted via the Concierge page will appear here in real-time.</p>
+            </td>
+          </tr>
+        `;
+      } else {
+        vipTbody.innerHTML = bookings.map(b => `
+          <tr class="hover:bg-zinc-900/40 transition-colors">
+            <td class="p-4">
+              <div class="font-bold text-white text-sm">${b.first_name} ${b.last_name}</div>
+              <div class="text-xs font-semibold text-zinc-400">${b.email} • ${b.phone}</div>
+            </td>
+            <td class="p-4 text-zinc-300 max-w-xs truncate">${b.requested_silhouettes || 'General Boutique Fitting'}</td>
+            <td class="p-4 text-zinc-400">${b.preferred_date || 'TBD'} • ${b.preferred_time || 'Morning'}</td>
+            <td class="p-4">
+              <span class="px-2.5 py-1 rounded-full text-xs font-semibold tracking-wider font-bold uppercase ${b.status === 'confirmed' ? 'bg-[#2EC4B6]/20 text-[#2EC4B6]' : (b.status === 'completed' ? 'bg-zinc-800 text-zinc-400' : 'bg-[#FF5A36]/20 text-[#FF5A36]')}">${b.status}</span>
+            </td>
+            <td class="p-4 text-right space-x-2">
+              <button onclick="updateBooking('${b.id}', 'confirmed')" class="text-xs font-semibold text-[#2EC4B6] hover:underline">Confirm</button>
+              <button onclick="updateBooking('${b.id}', 'completed')" class="text-xs font-semibold text-zinc-400 hover:underline">Complete</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // 2. Raffles
+      const raffles = await StrideDB.getRaffleEntries();
+      document.getElementById('statRaffleCount').textContent = raffles.length;
+      document.getElementById('tabCountRaffle').textContent = raffles.length;
+
+      const raffleTbody = document.getElementById('raffleTableBody');
+      if (raffles.length === 0) {
+        raffleTbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="py-16 text-center space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-zinc-900 border border-white/10 flex items-center justify-center mx-auto text-zinc-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+              </div>
+              <p class="text-xs text-white font-heading font-bold">No Sole Raffle Entrants Yet</p>
+              <p class="text-xs font-semibold text-zinc-500 font-mono">Entrants registered on the Drops page will populate here for winner selection.</p>
+            </td>
+          </tr>
+        `;
+      } else {
+        raffleTbody.innerHTML = raffles.map(r => `
+          <tr class="hover:bg-zinc-900/40 transition-colors">
+            <td class="p-4 font-bold text-white">${r.full_name}</td>
+            <td class="p-4 text-zinc-400">${r.email}</td>
+            <td class="p-4 text-zinc-400">${r.phone}</td>
+            <td class="p-4 font-bold text-[#FF5A36]">${r.shoe_size}</td>
+            <td class="p-4">
+              <span class="px-2.5 py-1 rounded-full text-xs font-semibold tracking-wider font-bold uppercase ${r.status === 'drawn_winner' ? 'bg-[#FF5A36] text-white font-extrabold animate-pulse' : 'bg-zinc-800 text-zinc-400'}">${r.status === 'drawn_winner' ? 'WINNER DRAWN' : r.status}</span>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // 3. Orders
+      const orders = await StrideDB.getOrders();
+      const ordersTbody = document.getElementById('ordersTableBody');
+      if (orders.length === 0) {
+        ordersTbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="py-16 text-center space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-zinc-900 border border-white/10 flex items-center justify-center mx-auto text-zinc-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+              </div>
+              <p class="text-xs text-white font-heading font-bold">No Orders Processed</p>
+              <p class="text-xs font-semibold text-zinc-500 font-mono">Authenticated checkout receipts will appear in this ledger.</p>
+            </td>
+          </tr>
+        `;
+      } else {
+        ordersTbody.innerHTML = orders.map(o => `
+          <tr class="hover:bg-zinc-900/40 transition-colors">
+            <td class="p-4 font-bold text-white">${o.order_number}</td>
+            <td class="p-4 text-zinc-300">${o.customer_name}</td>
+            <td class="p-4 text-zinc-400">${o.items_count || 1} pairs</td>
+            <td class="p-4 font-bold text-[#2EC4B6]">$${parseFloat(o.total_amount).toFixed(2)}</td>
+            <td class="p-4 text-zinc-400 uppercase text-xs font-semibold tracking-wider">Same-Day SoCal Courier</td>
+            <td class="p-4"><span class="px-2.5 py-0.5 rounded-full bg-zinc-800 text-xs font-semibold tracking-wider text-zinc-300 uppercase">${o.status}</span></td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    async function updateBooking(id, status) {
+      await StrideDB.updateBookingStatus(id, status);
+      loadAllData();
+    }
+
+    async function handleDrawWinner() {
+      const winner = await StrideDB.drawRaffleWinner();
+      if (!winner) {
+        alert('No eligible registered entrants found in raffle pool.');
+        return;
+      }
+      alert(`🎉 RAFFLE WINNER DRAWN:\n\nName: ${winner.full_name}\nEmail: ${winner.email}\nShoe Size: ${winner.shoe_size}\n\nWinner status marked in database!`);
+      loadAllData();
+    }
+
+    function exportDataCSV() {
+      StrideDB.getVIPBookings().then(bookings => {
+        let csv = "First Name,Last Name,Email,Phone,Requested Silhouettes,Date,Status\n";
+        bookings.forEach(b => {
+          csv += `"${b.first_name}","${b.last_name}","${b.email}","${b.phone}","${b.requested_silhouettes || ''}","${b.preferred_date || ''}","${b.status}"\n`;
+        });
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `stridemb_bookings_${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+      });
+    }
+
+    function saveSupabaseSettings() {
+      const url = document.getElementById('inputSupabaseUrl').value.trim();
+      const key = document.getElementById('inputSupabaseKey').value.trim();
+      localStorage.setItem('stridemb_supabase_url', url);
+      localStorage.setItem('stridemb_supabase_anon_key', key);
+      document.getElementById('supabaseStatusNotice').classList.remove('hidden');
+    }
+
+    // Auto-populate settings
+    document.getElementById('inputSupabaseUrl').value = localStorage.getItem('stridemb_supabase_url') || '';
+    document.getElementById('inputSupabaseKey').value = localStorage.getItem('stridemb_supabase_anon_key') || '';
+
+    if (sessionStorage.getItem('stridemb_admin_auth') === 'granted') {
+      loadAllData();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STRIDE MB — Design System & Component Library</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brandDark: '#0A0A0B', brandCard: '#131316', brandOrange: '#FF5A36', brandTeal: '#2EC4B6' },
+          fontFamily: { heading: ['Space Grotesk', 'sans-serif'], body: ['Plus Jakarta Sans', 'sans-serif'], mono: ['Space Mono', 'monospace'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0A0A0B] text-white font-body p-8 max-w-6xl mx-auto space-y-12 text-base text-zinc-100 font-sans antialiased selection:bg-emerald-500">
+  <div class="border-b border-white/10 pb-6 flex justify-between items-end">
+    <div>
+      <span class="badge-mb">TEMPLATE DESIGN SYSTEM</span>
+      <h1 class="text-4xl font-heading font-black mt-2">STRIDE MB Style Guide</h1>
+    </div>
+    <a href="/" class="text-xs font-mono text-[#FF5A36]">&larr; Back to Live Store</a>
+  </div>
+
+  <!-- Color Palette -->
+  <section class="space-y-4">
+    <h2 class="text-xl font-heading font-bold">1. Color Palette</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+      <div class="p-4 rounded-xl bg-[#0A0A0B] border border-white/20">
+        <div class="h-12 rounded bg-[#0A0A0B] border border-white/10 mb-2"></div>
+        <div class="font-bold">Obsidian Dark</div>
+        <div class="text-zinc-500">#0A0A0B</div>
+      </div>
+      <div class="p-4 rounded-xl bg-[#131316] border border-white/20">
+        <div class="h-12 rounded bg-[#131316] mb-2"></div>
+        <div class="font-bold">Card Charcoal</div>
+        <div class="text-zinc-500">#131316</div>
+      </div>
+      <div class="p-4 rounded-xl bg-[#131316] border border-white/20">
+        <div class="h-12 rounded bg-[#FF5A36] mb-2"></div>
+        <div class="font-bold">Sunset Orange</div>
+        <div class="text-[#FF5A36]">#FF5A36</div>
+      </div>
+      <div class="p-4 rounded-xl bg-[#131316] border border-white/20">
+        <div class="h-12 rounded bg-[#2EC4B6] mb-2"></div>
+        <div class="font-bold">Pacific Teal</div>
+        <div class="text-[#2EC4B6]">#2EC4B6</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Buttons & Badges -->
+  <section class="space-y-4">
+    <h2 class="text-xl font-heading font-bold">2. Buttons & Badges</h2>
+    <div class="flex flex-wrap gap-4 items-center p-6 rounded-2xl bg-zinc-900/50 border border-white/10">
+      <button class="btn-primary">Primary Action</button>
+      <button class="btn-secondary">Secondary Action</button>
+      <button class="btn-heat">High-Heat Drop</button>
+      <span class="badge-drop"><span class="pulse-dot"></span> Drop Alert</span>
+      <span class="badge-mb">Manhattan Beach</span>
+    </div>
+  </section>
+
+  <!-- Size Pills -->
+  <section class="space-y-4">
+    <h2 class="text-xl font-heading font-bold">3. Size Selector Controls</h2>
+    <div class="flex gap-2 p-6 rounded-2xl bg-zinc-900/50 border border-white/10">
+      <button class="size-pill">9.0</button>
+      <button class="size-pill active">9.5</button>
+      <button class="size-pill">10.0</button>
+      <button class="size-pill sold-out">10.5</button>
+    </div>
+  </section>
+</body>
+</html>

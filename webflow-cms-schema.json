@@ -1,0 +1,56 @@
+{
+  "templateName": "STRIDE MB - Manhattan Beach Luxury Sneaker Store",
+  "version": "1.0.0",
+  "author": "Aura & Grid",
+  "category": "E-Commerce / Fashion & Streetwear",
+  "collections": [
+    {
+      "name": "Sneakers / Products",
+      "slug": "sneakers",
+      "singularName": "Sneaker",
+      "fields": [
+        { "name": "Shoe Title", "slug": "name", "type": "PlainText", "required": true },
+        { "name": "Brand / Studio", "slug": "brand", "type": "PlainText", "required": true },
+        { "name": "Price USD", "slug": "price", "type": "Number", "required": true },
+        { "name": "Style Code / SKU", "slug": "sku", "type": "PlainText", "required": true },
+        { "name": "Colorway", "slug": "colorway", "type": "PlainText", "required": false },
+        { "name": "Release Edition", "slug": "edition", "type": "PlainText", "required": false },
+        { "name": "Primary Lateral Image", "slug": "main-image", "type": "Image", "required": true },
+        { "name": "Outsole Detail Image", "slug": "outsole-image", "type": "Image", "required": false },
+        { "name": "Heel Angle Image", "slug": "heel-image", "type": "Image", "required": false },
+        { "name": "Available Sizes", "slug": "sizes", "type": "PlainText", "required": true },
+        { "name": "In Stock Count", "slug": "stock-count", "type": "Number", "required": true },
+        { "name": "Badge Tag", "slug": "badge-tag", "type": "Option", "options": ["MB Exclusive", "Collab", "Rare Grail", "Low Stock", "Restock"] },
+        { "name": "Editorial Description", "slug": "description", "type": "RichText", "required": true },
+        { "name": "Material Specs", "slug": "materials", "type": "PlainText", "required": false },
+        { "name": "Is Featured on Homepage", "slug": "is-featured", "type": "Switch", "required": false }
+      ]
+    },
+    {
+      "name": "Drops & Raffles",
+      "slug": "drops",
+      "singularName": "Drop",
+      "fields": [
+        { "name": "Release Title", "slug": "name", "type": "PlainText", "required": true },
+        { "name": "Drop Date & Time (PST)", "slug": "drop-date", "type": "DateTime", "required": true },
+        { "name": "Raffle Price USD", "slug": "price", "type": "Number", "required": true },
+        { "name": "Total Pairs Allotted", "slug": "pairs-allotted", "type": "Number", "required": true },
+        { "name": "Hero Image", "slug": "drop-image", "type": "Image", "required": true },
+        { "name": "Raffle Rules & Instructions", "slug": "rules", "type": "RichText", "required": true },
+        { "name": "Is Raffle Active", "slug": "is-active", "type": "Switch", "required": true }
+      ]
+    },
+    {
+      "name": "Lookbooks",
+      "slug": "lookbooks",
+      "singularName": "Lookbook",
+      "fields": [
+        { "name": "Volume Title", "slug": "name", "type": "PlainText", "required": true },
+        { "name": "Location / Tag", "slug": "location", "type": "PlainText", "required": true },
+        { "name": "Season Year", "slug": "season", "type": "PlainText", "required": true },
+        { "name": "Editorial Images", "slug": "images", "type": "MultiImage", "required": true },
+        { "name": "Story Body", "slug": "story", "type": "RichText", "required": true }
+      ]
+    }
+  ]
+}

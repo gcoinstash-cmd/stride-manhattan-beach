@@ -1,0 +1,414 @@
+/* ==========================================================================
+   STRIDE MB - Manhattan Beach Sneaker Store Design System & Styles
+   Premium E-commerce Template for Webflow / Gumroad (Nike & Kith Grade UX)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Brand Color Palette */
+  --bg-primary: #0A0A0B;
+  --bg-secondary: #131316;
+  --bg-tertiary: #1C1C21;
+  --bg-card: rgba(23, 23, 28, 0.85);
+  --bg-glass: rgba(255, 255, 255, 0.04);
+  --bg-sand: #F6F4EE;
+  
+  --text-main: #FFFFFF;
+  --text-muted: #9E9EA7;
+  --text-subtle: #63636E;
+  --text-dark: #0A0A0B;
+  
+  --accent-orange: #FF5A36;      /* Sunset / High-Heat Drop Alert */
+  --accent-coral: #FF7D54;
+  --accent-teal: #2EC4B6;        /* Pacific Ocean Tide Accent */
+  --accent-sand: #D4AF37;        /* Gold / Premium Edition */
+  
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-accent: rgba(255, 90, 54, 0.4);
+  
+  /* Typography */
+  --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Resets & Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography Utility */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-orange);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-light);
+}
+
+.glass-nav {
+  background: rgba(10, 10, 11, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* Badge & Tag Elements */
+.badge-drop {
+  background: rgba(255, 90, 54, 0.15);
+  color: var(--accent-orange);
+  border: 1px solid rgba(255, 90, 54, 0.35);
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-mb {
+  background: rgba(46, 196, 182, 0.12);
+  color: var(--accent-teal);
+  border: 1px solid rgba(46, 196, 182, 0.3);
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+}
+
+/* Pulse Animation for Live Releases */
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-orange);
+  box-shadow: 0 0 0 0 rgba(255, 90, 54, 0.7);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 90, 54, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(255, 90, 54, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 90, 54, 0);
+  }
+}
+
+/* Sneaker Card Hover Animation & Quick-Add Size Overlay */
+.sneaker-card {
+  position: relative;
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+.sneaker-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-medium);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+}
+
+.sneaker-card .product-img {
+  transition: transform var(--transition-smooth);
+}
+.sneaker-card:hover .product-img {
+  transform: scale(1.06);
+}
+
+.quick-size-drawer {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+.sneaker-card:hover .quick-size-drawer {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Marquee Animation */
+.marquee-track {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 100%;
+  animation: marquee 24s linear infinite;
+  gap: 2rem;
+}
+.marquee-track:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--text-main);
+  color: var(--text-dark);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: var(--accent-orange);
+  color: #FFFFFF;
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px -5px rgba(255, 90, 54, 0.4);
+}
+
+.btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background: var(--bg-secondary);
+  border-color: var(--text-main);
+  color: #FFFFFF;
+}
+
+.btn-heat {
+  background: var(--accent-orange);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-heat:hover {
+  background: #E54522;
+  box-shadow: 0 10px 30px rgba(255, 90, 54, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Size Pill Selector */
+.size-pill {
+  width: 54px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-main);
+}
+.size-pill:hover {
+  border-color: var(--text-main);
+}
+.size-pill.active {
+  background: var(--text-main);
+  color: var(--text-dark);
+  border-color: var(--text-main);
+  font-weight: 800;
+}
+.size-pill.sold-out {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  border-style: dashed;
+}
+
+/* Colorway Swatch */
+.colorway-thumb {
+  width: 60px;
+  height: 52px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.colorway-thumb.active {
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 12px rgba(255, 90, 54, 0.4);
+}
+
+/* Angle Selector Pills */
+.angle-pill {
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 9999px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.angle-pill.active {
+  background: var(--text-main);
+  color: var(--text-dark);
+  font-weight: 700;
+  border-color: var(--text-main);
+}
+
+/* Nike / GOAT Sticky Bottom Buy Bar */
+#stickyBuyBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(13, 13, 16, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-medium);
+  z-index: 990;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#stickyBuyBar.visible {
+  transform: translateY(0);
+}
+
+/* Toast Notifications */
+#toastNotification {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #191920;
+  border: 1px solid var(--accent-orange);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 10000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  transform: translateY(120%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#toastNotification.show {
+  transform: translateY(0);
+}
+
+/* Cart Drawer */
+#cartDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 440px;
+  background: #111114;
+  border-left: 1px solid var(--border-light);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+#cartDrawer.open {
+  transform: translateX(0);
+}
+#cartOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9998;
+}
+#cartOverlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
