@@ -200,7 +200,7 @@ function injectUniversalComponents() {
           <button onclick="triggerCheckout()" class="w-full btn-heat !py-3.5 text-sm">
             Proceed to Secure Checkout &rarr;
           </button>
-          <p class="text-[10px] text-zinc-500 font-mono text-center">Encrypted 256-bit Checkout • Authenticity Guaranteed</p>
+          <p class="text-xs text-zinc-300 font-mono text-center font-medium">Encrypted 256-bit Checkout • Authenticity Guaranteed</p>
         </div>
       </aside>
     `;
@@ -225,17 +225,16 @@ function injectUniversalComponents() {
             </button>
           </div>
 
-          <nav class="space-y-4 text-base font-heading font-bold text-zinc-300">
+          <nav class="space-y-4 text-base font-heading font-bold text-zinc-200">
             <a href="index.html" class="block py-2 hover:text-white transition-colors">Home</a>
-            <a href="shop.html" class="block py-2 hover:text-white transition-colors">Shop All (84+ Pairs)</a>
-            <a href="drops.html" class="block py-2 text-[#FF5A36] flex items-center justify-between">
-              Live Drops Radar <span class="text-[10px] font-mono bg-[#FF5A36] text-white px-2 py-0.5 rounded-full">HOT</span>
+            <a href="#shop" class="block py-2 hover:text-white transition-colors" data-anchor-close>Shop All (84+ Pairs)</a>
+            <a href="#drops" class="block py-2 text-[#FF5A36] flex items-center justify-between" data-anchor-close>
+              Live Drops Radar <span class="text-[10px] font-mono bg-[#FF5A36] text-white px-2 py-0.5 rounded-full font-bold">HOT</span>
             </a>
-            <a href="lookbook.html" class="block py-2 hover:text-white transition-colors">Lookbook 2026</a>
-            <a href="about" class="block py-2 hover:text-white transition-colors">The Beach House</a>
-            <a href="contact" class="block py-2 hover:text-white transition-colors">VIP Concierge</a>
-            <a href="styleguide" class="block py-2 text-xs font-mono text-[#2EC4B6]">Design Styleguide</a>
-            <a href="admin" class="block py-2 text-xs font-mono text-amber-400 flex items-center justify-between border-t border-white/10 pt-3 mt-2">
+            <a href="#lookbook" class="block py-2 hover:text-white transition-colors" data-anchor-close>Lookbook 2026</a>
+            <a href="#about" class="block py-2 hover:text-white transition-colors" data-anchor-close>The Beach House</a>
+            <a href="#contact" class="block py-2 hover:text-white transition-colors" data-anchor-close>VIP Concierge</a>
+            <a href="admin" class="block py-2 text-xs font-mono text-amber-400 flex items-center justify-between border-t border-white/10 pt-3 mt-2 font-bold">
               ⚡ Boutique OS Admin <span class="bg-amber-400/20 text-amber-400 px-1.5 py-0.5 rounded text-[9px] uppercase font-bold">Portal</span>
             </a>
           </nav>
@@ -278,7 +277,7 @@ function injectUniversalComponents() {
             <button id="closeSearchBtn" class="text-xs font-mono text-zinc-400 hover:text-white px-2 py-1 rounded bg-zinc-800">ESC</button>
           </div>
           <div id="searchResults" class="p-4 max-h-80 overflow-y-auto space-y-2 text-sm">
-            <div class="text-zinc-500 font-mono text-xs px-2 py-4 text-center">Type to search the entire STRIDE MB archive...</div>
+            <div class="text-zinc-300 font-mono text-xs px-2 py-4 text-center font-medium">Type to search the entire STRIDE MB archive...</div>
           </div>
         </div>
       </div>
@@ -450,12 +449,12 @@ function initSearchModal() {
   searchInput?.addEventListener('input', (e) => {
     const q = e.target.value.toLowerCase().trim();
     if (!q) {
-      searchResults.innerHTML = `<div class="text-zinc-500 font-mono text-xs px-2 py-4 text-center">Type to search the entire STRIDE MB archive...</div>`;
+      searchResults.innerHTML = `<div class="text-zinc-300 font-mono text-xs px-2 py-4 text-center font-medium">Type to search the entire STRIDE MB archive...</div>`;
       return;
     }
     const matches = catalog.filter(item => item.name.toLowerCase().includes(q) || item.cat.toLowerCase().includes(q));
     if (matches.length === 0) {
-      searchResults.innerHTML = `<div class="text-zinc-500 font-mono text-xs px-2 py-4 text-center">No pairs found matching "${q}".</div>`;
+      searchResults.innerHTML = `<div class="text-zinc-300 font-mono text-xs px-2 py-4 text-center font-medium">No pairs found matching "${q}".</div>`;
     } else {
       searchResults.innerHTML = matches.map(item => `
         <a href="${item.link}" class="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 hover:bg-zinc-800 border border-white/5 transition-colors group">
@@ -485,6 +484,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyBuyBar();
   initPDPInteractions();
   initSearchModal();
+
+  // Wire mobile anchor clicks to close drawer
+  document.querySelectorAll('[data-anchor-close]').forEach(el => {
+    el.addEventListener('click', closeMobileMenu);
+  });
 
   // Wire mobile menu close
   document.getElementById('closeMobileMenuBtn')?.addEventListener('click', closeMobileMenu);
